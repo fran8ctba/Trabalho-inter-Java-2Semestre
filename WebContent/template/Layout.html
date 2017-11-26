@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<body>
+
+	<h:form>
+		<!--<p:menuitem value="home" outcome="/index" icon=template/logocortada.png width="10px" height="10px" >
+			<f:param name="agen" value="1" />
+		</p:menuitem>
+-->
+		<p:menubar>
+			<p:submenu label="Cadastrar">
+				<p:menuitem value="Animal" ajax="false" outcome="/animal/incluir" />
+				<p:menuitem value="Dono" ajax="false" outcome="/dono/incluir" />
+				<p:separator />
+			</p:submenu>
+
+			<p:submenu label="Pesquisar">
+				<p:menuitem value="Animal" ajax="false" outcome="/animal/pesquisar" />
+				<p:menuitem value="Dono" ajax="false" outcome="/dono/pesquisar" />
+			</p:submenu>
+
+			<p:submenu label="Agenda">
+				<p:menuitem value="Horário Estética" ajax="false"
+					outcome="/animal/incluir" />
+				<p:menuitem value="Horário Clinico" ajax="false"
+					outcome="/dono/consultar" />
+			</p:submenu>
+
+			<p:menuitem value="Venda" outcome="/index">
+				<f:param name="agen" value="2" />
+			</p:menuitem>
+
+
+			<f:facet name="options">
+				<h:form id="formularioTema">
+					<p:themeSwitcher id="defaultSwitcher"
+						value="#{ConfiguracaoVB.tema}">
+						<f:selectItems value="#{ConfiguracaoVB.temas}" />
+						<p:ajax listener="#{ConfiguracaoVB.salvarTema}" />
+					</p:themeSwitcher>
+				</h:form>
+			</f:facet>
+
+		</p:menubar>
+	</h:form>
+
+	<p:layoutUnit position="center">
+
+		<ui:insert name="centro">
+
+			<div align="center">
+				<img src="template/logocortada.png"></img>
+			</div>
+		</ui:insert>
+	</p:layoutUnit>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+	<h:head>
+	</h:head>
+	<body> 
+        <h1>Sistema de Controle de Clínica</h1> 
+         <div align="center">
+            <h:form id="dono">
+            <p:panelGrid id="formulario" style="width:75%;">
+                <p:focus context="formulario"/>
+                <f:facet name="header">
+                    <p:row>
+                        <p:column colspan="2" style="font-size:14px">
+                            Inclusão de Dono
+                        </p:column>
+                    </p:row>
+                </f:facet>
+                <p:row>
+                    <p:column style="width:30%;text-align:right;">
+                        <h:outputText value="Identificador : " />
+                    </p:column>
+                    <p:column>
+						<h:panelGroup>
+                        <p:inputText id="id" disabled="#{DonoVB.edicao}" value="#{DonoVB.id}" size="20" label="Identificador" />
+		       			&nbsp;
+					       <p:commandButton disabled="#{DonoVB.edicao}" value="Pesquisar" action="#{DonoVB.consultar}" ajax="false"/>
+						</h:panelGroup>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="width:30%;text-align:right;">
+                        <h:outputText  value="E-mail : " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="email" disabled="#{!DonoVB.edicao}" value="#{DonoVB.email}" size="50" label="Email" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="width:30%;text-align:right;">
+                        <h:outputText  value="Senha : " />
+                    </p:column>
+                    <p:column>
+                        <p:password id="senha" disabled="#{!DonoVB.edicao}"  redisplay="true" value="#{DonoVB.senha}" size="10" required="true" label="Senha" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="width:30%;text-align:right;">
+                        <h:outputText  value="Nome : " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="nome" disabled="#{!DonoVB.edicao}"  value="#{DonoVB.nome}" size="50" required="true" label="Nome" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="width:30%;text-align:right;">
+                        <h:outputText  value="Data de Nascimento : " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="dataNascimento" disabled="#{!DonoVB.edicao}"  value="#{DonoVB.dataNascimento}" size="10" required="true" label="Data de Nascimento" >
+                            <f:convertDateTime pattern="d/M/yyyy" />
+                        </p:inputText>
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="width:30%;text-align:right;">
+                        <h:outputText  value="Telefone : " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="telefone" disabled="#{!DonoVB.edicao}"  value="#{DonoVB.telefone}" size="15" required="true" label="Telefone" />
+                    </p:column>
+                </p:row>
+
+                <p:row>
+                    <p:column style="width:30%;text-align:right;">
+                        <h:outputText  value="CPF : " />
+                    </p:column>
+                    <p:column>
+                        <p:inputText id="cpf" disabled="#{!DonoVB.edicao}"  value="#{DonoVB.cpf}" size="11" required="true" label="CPF" />
+                    </p:column>
+                </p:row>
+                   <p:row>
+                       <p:column colspan="2" style="text-align:center;">
+					       <p:commandButton value="Confirma Alteração" disabled="#{!DonoVB.edicao}" action="#{DonoVB.alterar}" ajax="false">
+								<f:setPropertyActionListener target="#{DonoVB.tela}" value="alterar" />
+					       </p:commandButton>
+                           &nbsp;                        
+				            <p:commandButton value="Excluir" disabled="#{!DonoVB.edicao}" action="#{DonoVB.consultar}" ajax="false">
+				                <f:setPropertyActionListener target="#{DonoVB.tela}" value="excluir" />
+				            </p:commandButton>
+                           &nbsp;                        
+                           <p:commandButton value="Limpar" action="#{DonoVB.limpar}" 
+                                            immediate="true"
+                                            ajax="false">
+                              <f:setPropertyActionListener target="#{DonoVB.tela}" value="alterar" />
+                           </p:commandButton>
+                       </p:column>
+                   </p:row>
+                   <p:row>
+                       <p:column colspan="2">
+                           <p:messages />
+                       </p:column>
+                   </p:row>
+            </p:panelGrid>
+            <br/>
+            <p:commandButton value="Home" action="/index" immediate="true"/>
+          </h:form>
+        </div>
+	</body> 
+</html>

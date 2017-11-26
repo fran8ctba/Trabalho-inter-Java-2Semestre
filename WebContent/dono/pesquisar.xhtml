@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:decorate template="template/Layout.html">
+	<ui:define name="corpo">    
+       <h2>Pesquisa de Pacientes</h2>
+        <h:form id="inclusaoPaciente">
+            Nome : 
+            <h:inputText id="nome" value="#{PacienteVB.nome}" size="50" label="Nome" />
+            &nbsp;
+            <h:commandButton value="Pesquisar" action="#{PacienteVB.pesquisar}"
+                                   ajax="false"/>
+            <br/><br/>
+            <h:dataTable value="#{PacienteVB.listaPaciente}" 
+                         var="paciente"
+                         cellpadding="5"
+                         styleClass="tabela"
+                         headerClass="cabecalho"
+                         rowClasses="linha-impar,linha-par"
+                         width="100%">
+                <h:column>
+                    <f:facet name="header">Id.</f:facet>
+                    <h:commandLink action="#{PacienteVB.consultar}" value="#{paciente.id}">
+				        <f:setPropertyActionListener target="#{PacienteVB.id}" value="#{paciente.id}" />
+				        <f:setPropertyActionListener target="#{PacienteVB.tela}" value="consultar" />
+                    </h:commandLink>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">E-mail</f:facet>
+                    <h:outputText value="#{paciente.email}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nome</f:facet>
+                    <h:outputText value="#{paciente.nome}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Telefone</f:facet>
+                    <h:outputText value="#{paciente.telefone}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Dt. Nascimento</f:facet>
+                    <h:outputText value="#{paciente.dataNascimento}">
+				        <f:converter converterId="dataConverter"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Alterar</f:facet>
+                    <h:commandButton value="Alterar" action="#{PacienteVB.consultar}"
+                                     ajax="false">
+				        <f:setPropertyActionListener target="#{PacienteVB.id}" value="#{paciente.id}" />
+				        <f:setPropertyActionListener target="#{PacienteVB.tela}" value="alterar" />
+			        </h:commandButton>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Excluir</f:facet>
+                    <h:commandButton value="Excluir" action="#{PacienteVB.consultar}"
+                                     ajax="false">
+				        <f:setPropertyActionListener target="#{PacienteVB.id}" value="#{paciente.id}" />
+				        <f:setPropertyActionListener target="#{PacienteVB.tela}" value="excluir" />
+			        </h:commandButton>
+                </h:column>
+            </h:dataTable>        
+            <h:messages errorStyle="color:red;margin:8px;" infoStyle="color:blue;margin:8px;" layout="table"/>
+			<br/>
+            <h:commandButton value="Home" action="/index" immediate="true"/>
+        </h:form>
+</ui:define>
+</ui:decorate>
+</html>
